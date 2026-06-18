@@ -68,3 +68,14 @@
   filter: brightness(0.9);
   box-shadow: 0 8px 30px rgba(56, 189, 248, 0.65);
 }
+.btn:disabled, 
+.btn[disabled] {
+  background: #334155 !important;
+  color: #64748b !important;      
+  opacity: 0.6;                  
+  cursor: not-allowed;           
+  box-shadow: none !important;    
+  filter: none !important;       
+  transform: none !important;    
+  pointer-events: none;         
+}

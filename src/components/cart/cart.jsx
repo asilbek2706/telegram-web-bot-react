@@ -1,15 +1,24 @@
 import Button from "../button/button";
+import { totalPrice } from "../units/total-price";
 import "./cart.css";
 
-const Cart = () => {
+const Cart = ({ cartItems }) => {
   return (
     <div className="cart__container">
-        <p>
-            Umumiy narx: <span>$12.00</span>
-        </p>
-            <Button type="checkout" title={"Buyurtma"} />
+      <>
+        {cartItems.length !== 0 && (
+          <p>
+            Umumiy narx: <span>${totalPrice(cartItems).toFixed(2)}</span>
+          </p>
+        )}
+        <Button
+          type="checkout"
+          title={`${cartItems.length === 0 ? "Buyurtma berish" : "To'lov qilish"}`}
+          disabled={cartItems.length === 0 ? true : false}
+        />
+      </>
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

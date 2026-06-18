@@ -46,7 +46,7 @@ const App = () => {
       <div className="app__header">
         <h1 className="app__title">Asil Kurslar</h1>
       </div>
-      <Cart />
+      <Cart cartItems={cartItems} />
       <div className="cards__container">
         {courses.map((course) => (
           <Card

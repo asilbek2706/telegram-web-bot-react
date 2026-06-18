@@ -47,6 +47,10 @@
   }
 }
 
+.card__badge-hidden{
+  display: none;
+}
+
 .image__container {
   width: 100%;
   overflow: hidden;
