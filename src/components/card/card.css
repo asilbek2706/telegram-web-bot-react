@@ -1,0 +1,141 @@
+.card {
+  background-color: #1e293b;
+  border-radius: 16px;
+  /* overflow: hidden; -> Olib tashlandi */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.15);
+}
+
+.card__badge {
+  position: absolute;
+  top: 0; /* Ichkariga surildi */
+  right: 0; /* Ichkariga surildi */
+  width: 40px;
+  height: 40px;
+  background-color: rgb(227, 112, 30);
+  border-radius: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: translate(20px, -20px);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  font-size: 1.2rem;
+  font-weight: bold;
+  animation: scaleanimation 1s ease infinite;
+}
+
+@keyframes scaleanimation {
+  from {
+    transform: translate(20px, -20px) scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate(20px, -20px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+.image__container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #0f172a;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.image__container img {
+  display: block;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image__container img {
+  transform: scale(1.05);
+}
+
+.card__body {
+  padding: 1.25rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.card__price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.hr {
+  height: 1px;
+  background-color: #465467;
+  margin: 0 1.25rem;
+}
+
+.btn-container {
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-container button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-container button:first-child {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.btn-container button:first-child:hover {
+  background-color: #059669;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.btn-container button:last-child {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.btn-container button:last-child:hover {
+  background-color: #dc2626;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
+.btn-container button:active {
+  transform: scale(0.95);
+}
