@@ -1,0 +1,70 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  outline: none;
+  width: 100%;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn.add {
+  background-color: #10b981;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.btn.add:hover {
+  background-color: #059669;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn.add:active {
+  background-color: #047857;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.6);
+}
+
+.btn.remove {
+  background-color: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.btn.remove:hover {
+  background-color: #dc2626;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn.remove:active {
+  background-color: #b91c1c;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.6);
+}
+
+.btn.checkout {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);
+  width: 150px;
+  font-size: 16px;
+}
+
+.btn.checkout:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 22px rgba(56, 189, 248, 0.45);
+}
+
+.btn.checkout:active {
+  filter: brightness(0.9);
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.65);
+}

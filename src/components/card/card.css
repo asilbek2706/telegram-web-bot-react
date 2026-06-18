@@ -41,10 +41,6 @@
 }
 
 @keyframes scaleanimation {
-  from {
-    transform: translate(20px, -20px) scale(1);
-    opacity: 0.8;
-  }
   to {
     transform: translate(20px, -20px) scale(1.05);
     opacity: 1;
@@ -103,39 +99,6 @@
   padding: 1.25rem;
   display: flex;
   gap: 1rem;
-}
-
-.btn-container button {
-  flex: 1;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-container button:first-child {
-  background-color: #10b981;
-  color: #ffffff;
-}
-
-.btn-container button:first-child:hover {
-  background-color: #059669;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
-}
-
-.btn-container button:last-child {
-  background-color: #ef4444;
-  color: #ffffff;
-}
-
-.btn-container button:last-child:hover {
-  background-color: #dc2626;
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
-}
-
-.btn-container button:active {
-  transform: scale(0.95);
+  justify-content: center;
+  align-items: center;
 }
