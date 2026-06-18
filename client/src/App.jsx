@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Card from "./components/card/card";
 import Cart from "./components/cart/cart";
@@ -6,8 +6,14 @@ import { getData } from "./constants/db";
 
 const courses = getData();
 
+const telegram = window.Telegram.WebApp;
+
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    telegram.ready();
+  });
 
   const onAddItems = (item) => {
     const existItem = cartItems.find((x) => x.id === item.id);
@@ -41,12 +47,17 @@ const App = () => {
     }
   };
 
+  const onCheckout = () => {
+    telegram.mainButton.text = "Sotib olish";
+    telegram.MainButton.show();
+  };
+
   return (
     <div className="container">
       <div className="app__header">
         <h1 className="app__title">Asil Kurslar</h1>
       </div>
-      <Cart cartItems={cartItems} />
+      <Cart cartItems={cartItems} onCheckout={onCheckout} />
       <div className="cards__container">
         {courses.map((course) => (
           <Card
