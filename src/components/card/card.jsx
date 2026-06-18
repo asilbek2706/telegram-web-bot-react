@@ -2,7 +2,7 @@ import "./card.css";
 import Button from "../button/button";
 
 const Card = (props) => {
-  const { course } = props;
+  const { course, onAddItems, onRemoveItems } = props;
 
   return (
     <div className="card">
@@ -25,8 +25,8 @@ const Card = (props) => {
       <div className="hr"></div>
 
       <div className="btn-container">
-        <Button type="add" title={"+"} />
-        <Button type="remove" title={"-"} />
+        <Button type="add" title={"+"} onClick={() => onAddItems(course)} />
+        <Button type="remove" title={"-"} onClick={() => onRemoveItems(course)} />
       </div>
     </div>
   );
