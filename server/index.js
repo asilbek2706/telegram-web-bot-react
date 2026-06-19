@@ -11,6 +11,17 @@ if (!token) {
 const bot = new TelegramBot(token, { polling: true });
 
 const bootstrap = async () => {
+  bot.setMyCommands([
+    {
+      command: "/start",
+      description: "Botni ishga tushirish",
+    },
+    {
+      command: "/courses",
+      description: "Kurslarni ko'rish",
+    },
+  ]);
+
   bot.on("message", async (msg) => {
     const chatId = msg.chat.id;
     const text = msg.text;
@@ -22,6 +33,27 @@ const bootstrap = async () => {
         {
           reply_markup: {
             keyboard: [
+              [
+                {
+                  text: "Kurslarni ko'rish",
+                  web_app: {
+                    url: "https://telegram-web-bot-two-rouge.vercel.app",
+                  },
+                },
+              ],
+            ],
+          },
+        },
+      );
+    }
+
+    if (text === "/courses") {
+      await bot.sendMessage(
+        chatId,
+        "Kurslarni ko'rish uchun quyidagi tugmani bosing:",
+        {
+          reply_markup: {
+            inline_keyboard: [
               [
                 {
                   text: "Kurslarni ko'rish",
