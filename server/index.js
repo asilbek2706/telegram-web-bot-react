@@ -103,7 +103,20 @@ const bootstrap = async () => {
 bootstrap();
 
 app.post("/web-data", async (req, res) => {
+  const { queryId, products } = req.body;
+  try {
+    await bot.answerWebAppQuery(queryId, {
+      type: "article",
+      id: queryId,
+      title: "Muvaffaqiyatli xarid qildingiz!",
+      input_message_content: {
+        message_text: `Siz muvaffaqiyatli xarid qildingiz! Siz tanlagan kurslar: ${products.map((item) => `${item.title} - ${item.quantity} ta`).join(", ")}. Umumiy narx: ${products.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString("en-US", { style: "currency", currency: "USD" })} qiymatga ega mahsulotlar xarid qildingiz.`,
+      },
+    });
+    return res.status(200).send("Muvaffaqiyatli xarid qildingiz!");
+  } catch (error) {
+    return res.status(500).send("Server xatosi");
+  }
+});
 
-}) 
-
-app.listen(process.env.PORT || 5000, () => console.log("Server ishga tushdi!"));
+app.listen(process.env.PORT || 8000, () => console.log("Server ishga tushdi!"));

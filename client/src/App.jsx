@@ -61,7 +61,7 @@ const App = () => {
     const queryId = telegram.initDataUnsafe?.query_id;
 
     if (queryId) {
-      fetch("https://telegram-web-bot-two-rouge.vercel.app/web-data", {
+      fetch("http://localhost:8000/web-data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
