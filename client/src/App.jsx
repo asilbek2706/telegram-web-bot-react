@@ -5,7 +5,6 @@ import Cart from "./components/cart/cart";
 import { getData } from "./constants/db";
 
 const courses = getData();
-
 const telegram = window.Telegram.WebApp;
 
 const App = () => {
@@ -13,47 +12,48 @@ const App = () => {
 
   useEffect(() => {
     telegram.ready();
-  });
+  }, []);
+
+  useEffect(() => {
+    telegram.MainButton.text = "Sotib olish  :)";
+    if (cartItems.length > 0) {
+      telegram.MainButton.show();
+    } else {
+      telegram.MainButton.hide();
+    }
+  }, [cartItems]);
 
   const onAddItems = (item) => {
     const existItem = cartItems.find((x) => x.id === item.id);
 
     if (existItem) {
-      const newData = cartItems.map((x) =>
-        x.id === item.id
-          ? { ...existItem, quantity: existItem.quantity + 1 }
-          : x,
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === item.id
+            ? { ...existItem, quantity: existItem.quantity + 1 }
+            : x,
+        ),
       );
-      setCartItems(newData);
     } else {
-      const newData = [...cartItems, { ...item, quantity: 1 }];
-      setCartItems(newData);
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
   };
 
   const onRemoveItems = (item) => {
     const existItem = cartItems.find((x) => x.id === item.id);
 
+    if (!existItem) return; // Crashdan himoya
+
     if (existItem.quantity === 1) {
-      const newData = cartItems.filter((x) => x.id !== item.id);
-      setCartItems(newData);
+      setCartItems(cartItems.filter((x) => x.id !== item.id));
     } else {
-      const newData = cartItems.map((x) =>
-        x.id === item.id
-          ? { ...existItem, quantity: existItem.quantity - 1 }
-          : x,
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === item.id
+            ? { ...existItem, quantity: existItem.quantity - 1 }
+            : x,
+        ),
       );
-      setCartItems(newData);
-    }
-  };
-
-  const onCheckout = () => {
-    telegram.MainButton.text = "Sotib olish  :)";
-
-    if (cartItems.length > 0) {
-      telegram.MainButton.show();
-    } else {
-      telegram.MainButton.hide();
     }
   };
 
@@ -66,18 +66,15 @@ const App = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cartItems),
+        body: JSON.stringify({ products: cartItems, queryId: queryId }),
       });
     } else {
-      telegram.sendData(
-        JSON.stringify({ products: cartItems, queryId: queryId }),
-      );
+      telegram.sendData(JSON.stringify(cartItems));
     }
   }, [cartItems]);
 
   useEffect(() => {
     telegram.onEvent("mainButtonClicked", onSendData);
-
     return () => {
       telegram.offEvent("mainButtonClicked", onSendData);
     };
@@ -88,7 +85,7 @@ const App = () => {
       <div className="app__header">
         <h1 className="app__title">Asil Kurslar</h1>
       </div>
-      <Cart cartItems={cartItems} onCheckout={onCheckout} />
+      <Cart cartItems={cartItems} />
       <div className="cards__container">
         {courses.map((course) => (
           <Card
