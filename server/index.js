@@ -99,7 +99,9 @@ const bootstrap = async () => {
 
         await bot.sendMessage(
           chatId,
-          `Umumiy narx: ${totalSum.toLocaleString()} USD`,
+          `Umumiy narx: ${totalSum.toLocaleString({
+            "en-US": "USD",
+          })} USD`,
         );
       } catch (error) {
         console.error("WebAppData formatlashda xatolik:", error);
