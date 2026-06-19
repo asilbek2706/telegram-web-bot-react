@@ -61,7 +61,7 @@ const App = () => {
     const queryId = telegram.initDataUnsafe?.query_id;
 
     if (queryId) {
-      fetch("http://localhost:8000/web-data", {
+      fetch("https://telegramwebapibot-b671371abfbb.herokuapp.com/web-data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
