@@ -35,6 +35,29 @@ const bootstrap = async () => {
         },
       );
     }
+
+    if (msg.web_app_data?.data) {
+      try {
+        const data = JSON.parse(msg.web_app_data?.data);
+
+        await bot.sendMessage(
+          chatId,
+          "Bizning kursimizni tanlaganingiz uchun rahmat! Siz tanlagan kurslar: ",
+        );
+
+        for (let item of data) {
+          await bot.sendPhoto(chatId, item.Image);
+          await bot.sendMessage(chatId, `${item.title} - ${item.quantity} ta`);
+        }
+
+        await bot.sendMessage(
+          chatId,
+          `Umumiy narx: ${data.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString("en-US", { style: "currency", currency: "USD" })} so'm`,
+        );
+      } catch (error) {
+        console.error("Xatolik yuzaga keldi:", error);
+      }
+    }
   });
 };
 
