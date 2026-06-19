@@ -19,6 +19,20 @@ const bootstrap = async () => {
       await bot.sendMessage(
         chatId,
         `Assalomu alaykum, ${msg.from.first_name}!`,
+        {
+          reply_markup: {
+            keyboard: [
+              [
+                {
+                  text: "Kurslarni ko'rish",
+                  web_app: {
+                    url: "https://telegram-web-bot-two-rouge.vercel.app",
+                  },
+                },
+              ],
+            ],
+          },
+        },
       );
     }
   });
