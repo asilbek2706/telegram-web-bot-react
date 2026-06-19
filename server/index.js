@@ -1,4 +1,6 @@
 import TelegramBot from "node-telegram-bot-api";
+import express from "express";
+import cors from "cors";
 import "dotenv/config";
 
 const token = process.env.TOKEN;
@@ -9,6 +11,11 @@ if (!token) {
 }
 
 const bot = new TelegramBot(token, { polling: true });
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
 
 const bootstrap = async () => {
   bot.setMyCommands([
@@ -94,3 +101,9 @@ const bootstrap = async () => {
 };
 
 bootstrap();
+
+app.post("/web-data", async (req, res) => {
+
+}) 
+
+app.listen(process.env.PORT || 5000, () => console.log("Server ishga tushdi!"));
